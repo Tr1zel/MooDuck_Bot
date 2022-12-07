@@ -30,7 +30,21 @@ class ReminderStates(StatesGroup):
     textRemind = State()
     timeRemind = State()
 
-
+@dp.message_handler(commands=["help"])
+async def start_handler(message: types.Message):
+    user_id = message.from_user.id
+    user_name = message.from_user.first_name
+    user_full_name = message.from_user.full_name
+    await message.reply(f"{user_full_name}, в этом боте есть несколько команд и какое то количество кнопок.\n"
+                        f"<b>И так начнем пожалуй с команд:</b>\n"
+                        f"Есть команда /start, она собственно запускает бота и если надо выводит клавиатуру.\n"
+                        f"Так же есть команда /links, она вывоит две Inline кнопки с ссылками на профиль разработчика в VK и на GitHub проекта.\n"
+                        f"<b>Теперь разберем клавиатуру с главными кнопками:</b>\n"
+                        f"<i>Первая кнопка</i> называется 'Рандомное число', она генерирует случайное число от 0 до 9999.\n"
+                        f"<i>Вторая кнопка</i> называется 'Секретная кнопка', что она делает, секрет (узнай сам)\n"
+                        f"<i>Третья кнопка</i> называется 'Напоминания', она создает напоминание (Пока на стадии разработки)\n"
+                        f"<i>Последняя кнопка</i> называется 'Информация', по нажатию Бот пришлет информацию о себе и о его создателе",
+                        reply_markup = nav.mainMenu, parse_mode="html")
 
 
 
